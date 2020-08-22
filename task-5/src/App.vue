@@ -3,18 +3,24 @@
     <div class="jumbotron text-center">
       <h1>Олимпиада</h1>
     </div>
-  
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <div class="container">
+
+        <Olympiad />
+
+
+    </div>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Olympiad from './components/Olympiad.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Olympiad
   }
 }
 </script>

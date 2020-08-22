@@ -1,10 +1,14 @@
 <template>
-  <div class="justify-content-center form-inline">
-      <div class="form-group mx-sm-3 mb-2">
-        <label for="inputPassword2" class="sr-only">Password</label>
-        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+  <div class="justify-content-center">
+    <div class="form-group row">
+      <label for="participants" class="col-sm-2 col-form-label">Участники</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="participants" placeholder="введите имена участников через запятую">
       </div>
-      <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary mb-2">Добавить</button>
+      </div>
+    </div>
   </div>
 </template>
 

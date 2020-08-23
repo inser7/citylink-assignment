@@ -16,6 +16,6 @@ interface DeliverCompany
      *
      * @return int
      */
-    function cal( $weight ): int;
+    function calc( $weight ): int;
 
 }

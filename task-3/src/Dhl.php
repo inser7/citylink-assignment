@@ -13,7 +13,7 @@ class Dhl implements DeliverCompany
      *
      * @return int
      */
-    function cal( $weight ): int
+    function calc( $weight ): int
     {
         return $weight * DeliverCompany::BASE_PRICE;
     }

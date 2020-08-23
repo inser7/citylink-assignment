@@ -1,4 +1,6 @@
-# citylink.pro
+## Live demo
+
+https://inser7.github.io/citylink-assignment/
 
 ## Project setup
 ```

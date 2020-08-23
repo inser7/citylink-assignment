@@ -108,4 +108,4 @@ function find( $str )
     return NULL;
 }
 
-echo find( 'Заводская' ) . PHP_EOL;;
+echo find( 'Заводская' ) . PHP_EOL;

@@ -107,14 +107,13 @@ function checkCollision( $str )
 
         $itemMinutes1 = $hours1 * 60 + $minutes1;
         $itemMinutes2 = $hours2 * 60 + $minutes2;
-
-        //Сравнить первый интервал
+        
         if( ( $totalMinutes1 > $itemMinutes1 && $totalMinutes1 < $itemMinutes2 ) ||
             ( $totalMinutes2 > $itemMinutes1 && $totalMinutes2 < $itemMinutes2 ) ||
             ( $itemMinutes1 > $totalMinutes1 && $itemMinutes1 < $totalMinutes2 ) ||
             ( $itemMinutes1 === $totalMinutes1 && $itemMinutes2 === $totalMinutes2 )
         ) {
-            return $item;
+            return TRUE;
         }
     }
     return FALSE;

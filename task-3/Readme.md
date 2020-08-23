@@ -22,3 +22,17 @@
 # Использовать данные:
 # любые
 ```
+
+## Installation
+
+```
+composer i
+
+```
+
+### Testing
+
+```
+php ./vendor/bin/phpunit ./tests/Unit/DhlTest.php
+php ./vendor/bin/phpunit ./tests/Unit/PochtaTest.php
+```

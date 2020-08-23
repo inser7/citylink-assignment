@@ -4,7 +4,7 @@
       <label for="participants" class="col-sm-2 col-form-label">Участники</label>
       <div class="col-sm-8">
         <input v-model="newParticipants" type="text" class="form-control" id="participants"
-               placeholder="введите имена участников через запятую" @keyup.enter="AddNewRows()">
+               placeholder="Введите имена участников через запятую" @keyup.enter="AddNewRows()">
       </div>
       <div class="col-sm-2">
         <button class="btn btn-primary mb-2" v-on:click="AddNewRows()">Добавить</button>
@@ -28,13 +28,15 @@
                     v-if="((currentSort === 'name') && (currentSortDir === 'asc'))"></span>
               <span class="fa fa-chevron-up"
                     v-if="((currentSort === 'name') && (currentSortDir === 'desc'))"></span>
-              Имя</th>
+              Имя
+            </th>
             <th @click="sort('score')">
               <span class="fa fa-chevron-down"
                     v-if="((currentSort === 'score') && (currentSortDir === 'asc'))"></span>
               <span class="fa fa-chevron-up"
                     v-if="((currentSort === 'score') && (currentSortDir === 'desc'))"></span>
-              Очки</th>
+              Очки
+            </th>
           </tr>
           </thead>
           <tbody>
@@ -49,15 +51,13 @@
     </div>
 
 
-    <modal v-if="showErrorModalFlag"
-           v-on:close="showErrorModalFlag = false">
+    <modal v-if="showErrorModalFlag" v-on:close="showErrorModalFlag = false">
       <div slot="header">
         <h3>Ошибка</h3>
       </div>
       <span slot="body">
-                {{ errorMessage }}
-                </span>
-
+        {{ errorMessage }}
+      </span>
     </modal>
 
   </div>
@@ -80,7 +80,7 @@ export default {
       currentSort: 'id',
       currentSortDir: 'asc',
       newParticipants: '',
-      errorMessage:'',
+      errorMessage: '',
       showErrorModalFlag: false,
     }
   },
@@ -102,24 +102,28 @@ export default {
     AddNewRows: function () { // Добавить новую строку в таблицу
       let self = this;
 
-      if (self.newParticipants === '' || self.newParticipants === null || self.newParticipants.value === 0){
+      if ( self.newParticipants === '' || self.newParticipants === null || self.newParticipants.value === 0 ) {
         self.showErrorModalFlag = true;
-        this.errorMessage='Поле ввода не может быть пустым';
-        return ;
+        this.errorMessage = 'Поле ввода не может быть пустым';
+        return;
       }
 
-     // let regex = /^[а-я]*$/
+      // let regex = /^[а-я]*$/
       let regex = /^[а-яА-Я, ]*$/;
-      if (!regex.test(self.newParticipants)) {
+      if ( !regex.test( self.newParticipants ) ) {
         self.showErrorModalFlag = true;
-        this.errorMessage='Доступны только кириллические буквы и запятая';
-        return ;
+        this.errorMessage = 'Доступны только кириллические буквы и запятая';
+        return;
       }
 
       let nameArr = self.newParticipants.split( ',' );
       // eslint-disable-next-line no-debugger
       nameArr.forEach( function ( element ) {
-        self.participants.push( { id: self.participants.length + 1, name: element, score: Math.ceil( Math.random() * 100 ) } );
+        self.participants.push( {
+          id: self.participants.length + 1,
+          name: element,
+          score: Math.ceil( Math.random() * 100 )
+        } );
       } );
       self.newParticipants = null;
     },

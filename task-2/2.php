@@ -76,7 +76,7 @@ function validateDate( $str ): bool
     return FALSE;
 }
 
-function checkInterseption( $str ): bool
+function checkCollision( $str )
 {
     global $list;
 
@@ -112,9 +112,9 @@ function checkInterseption( $str ): bool
         if( ( $totalMinutes1 > $itemMinutes1 && $totalMinutes1 < $itemMinutes2 ) ||
             ( $totalMinutes2 > $itemMinutes1 && $totalMinutes2 < $itemMinutes2 ) ||
             ( $itemMinutes1 > $totalMinutes1 && $itemMinutes1 < $totalMinutes2 ) ||
-            ( $itemMinutes2 > $totalMinutes1 && $itemMinutes2 < $totalMinutes2 ) ||
-            ( $itemMinutes1 === $totalMinutes1 && $itemMinutes2 === $totalMinutes2 ) ) {
-            return TRUE;
+            ( $itemMinutes1 === $totalMinutes1 && $itemMinutes2 === $totalMinutes2 )
+        ) {
+            return $item;
         }
     }
     return FALSE;
@@ -122,10 +122,13 @@ function checkInterseption( $str ): bool
 
 var_dump( validateDate( $list[ 5 ] ) );
 var_dump( validateDate( '23:30-22:30' ) ); // False потому что первое значение больше
+echo "---------".PHP_EOL;
 
-
-var_dump( checkInterseption( '09:00-10:00' ) );
-var_dump( checkInterseption( '18:00-19:00' ) );
-var_dump( checkInterseption( '23:00-00:00' ) );
+var_dump( checkCollision( '09:30-11:00' ) ); // true 09:00-11:00
+var_dump( checkCollision( '08:00-12:00' ) ); // true 11:00-13:00
+var_dump( checkCollision( '08:25-22:50' ) ); // true 09:00-11:00
+var_dump( checkCollision( '22:20-23:01' ) ); // true 21:30-22:30
+var_dump( checkCollision( '21:30-22:30' ) ); // true 20:30-21:30
+var_dump( checkCollision( '23:00-00:00' ) ); // false
 
 ?>

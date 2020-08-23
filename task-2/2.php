@@ -107,12 +107,11 @@ function checkCollision( $str )
 
         $itemMinutes1 = $hours1 * 60 + $minutes1;
         $itemMinutes2 = $hours2 * 60 + $minutes2;
-        
+
         if( ( $totalMinutes1 > $itemMinutes1 && $totalMinutes1 < $itemMinutes2 ) ||
             ( $totalMinutes2 > $itemMinutes1 && $totalMinutes2 < $itemMinutes2 ) ||
             ( $itemMinutes1 > $totalMinutes1 && $itemMinutes1 < $totalMinutes2 ) ||
-            ( $itemMinutes1 === $totalMinutes1 && $itemMinutes2 === $totalMinutes2 )
-        ) {
+            ( $itemMinutes1 === $totalMinutes1 && $itemMinutes2 === $totalMinutes2 ) ) {
             return TRUE;
         }
     }
@@ -121,13 +120,15 @@ function checkCollision( $str )
 
 var_dump( validateDate( $list[ 5 ] ) );
 var_dump( validateDate( '23:30-22:30' ) ); // False потому что первое значение больше
-echo "---------".PHP_EOL;
+echo "---------" . PHP_EOL;
 
 var_dump( checkCollision( '09:30-11:00' ) ); // true 09:00-11:00
 var_dump( checkCollision( '08:00-12:00' ) ); // true 11:00-13:00
 var_dump( checkCollision( '08:25-22:50' ) ); // true 09:00-11:00
 var_dump( checkCollision( '22:20-23:01' ) ); // true 21:30-22:30
 var_dump( checkCollision( '21:30-22:30' ) ); // true 20:30-21:30
+echo "---------" . PHP_EOL;
+var_dump( checkCollision( '22:29-23:30' ) ); // true 20:30-21:30
 var_dump( checkCollision( '23:00-00:00' ) ); // false
 
 ?>

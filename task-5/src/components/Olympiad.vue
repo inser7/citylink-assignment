@@ -18,9 +18,9 @@
           <tr>
             <th @click="sort('id')">
               <i class="fas fa-sort-down"
-                    v-if="((currentSort === 'id') && (currentSortDir === 'asc'))"></i>
+                 v-if="((currentSort === 'id') && (currentSortDir === 'asc'))"></i>
               <i class="fas fa-sort-up"
-                    v-if="((currentSort === 'id') && (currentSortDir === 'desc'))"></i>
+                 v-if="((currentSort === 'id') && (currentSortDir === 'desc'))"></i>
               <i class="fas fa-sort"
                  v-if="(currentSort !== 'id')"></i>
               Id
@@ -93,13 +93,28 @@ export default {
 
   computed: {
     sortedParticipants: function () {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      return this.participants.sort( ( a, b ) => {
+      let self = this;
+      let tmpArr = this.participants;
+      return tmpArr.sort( ( a, b ) => {
         let modifier = 1;
-        if ( this.currentSortDir === 'desc' ) modifier = -1;
-        if ( a[ this.currentSort ] < b[ this.currentSort ] ) return -1 * modifier;
-        if ( a[ this.currentSort ] > b[ this.currentSort ] ) return 1 * modifier;
-        return 0;
+        if ( self.currentSort === 'score' || self.currentSort === 'id' ) {
+          if ( self.currentSortDir === 'desc' ) return b[ self.currentSort ] - a[ self.currentSort ];
+          if ( self.currentSortDir === 'asc' ) return a[ self.currentSort ] - b[ self.currentSort ];
+          return 0;
+        } else {
+          let nameA = a[ self.currentSort ].trim().toLowerCase();
+          let nameB = b[ self.currentSort ].trim().toLowerCase();
+          if ( self.currentSortDir === 'desc' ) {
+            modifier = -1;
+          }
+          if ( nameA < nameB ) {
+            return -1 * modifier;
+          }
+          if ( nameA > nameB ) {
+            return 1 * modifier;
+          }
+          return 0;
+        }
       } );
     }
   },

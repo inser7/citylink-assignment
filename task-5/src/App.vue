@@ -5,10 +5,7 @@
     </div>
 
     <div class="container">
-
         <Olympiad />
-
-
     </div>
 
   </div>

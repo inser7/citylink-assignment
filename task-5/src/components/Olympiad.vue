@@ -48,12 +48,30 @@
       </div>
     </div>
 
+
+    <modal v-if="showErrorModalFlag"
+           v-on:close="showErrorModalFlag = false">
+      <div slot="header">
+        <h3>Ошибка</h3>
+      </div>
+      <span slot="body">
+                {{ errorMessage }}
+                </span>
+
+    </modal>
+
   </div>
 </template>
 
 <script>
+import Modal from './modal.vue'
+
 export default {
   name: 'Olympiad',
+
+  components: {
+    Modal
+  },
 
   data: function () {
     return {
@@ -62,6 +80,8 @@ export default {
       currentSort: 'id',
       currentSortDir: 'asc',
       newParticipants: '',
+      errorMessage:'',
+      showErrorModalFlag: false,
     }
   },
 
@@ -81,9 +101,23 @@ export default {
   methods: {
     AddNewRows: function () { // Добавить новую строку в таблицу
       let self = this;
+
+      if (self.newParticipants === '' || self.newParticipants === null || self.newParticipants.value === 0){
+        self.showErrorModalFlag = true;
+        this.errorMessage='Поле ввода не может быть пустым';
+        return ;
+      }
+
+     // let regex = /^[а-я]*$/
+      let regex = /^[а-яА-Я, ]*$/;
+      if (!regex.test(self.newParticipants)) {
+        self.showErrorModalFlag = true;
+        this.errorMessage='Доступны только кириллические буквы и запятая';
+        return ;
+      }
+
       let nameArr = self.newParticipants.split( ',' );
-      // // eslint-disable-next-line no-debugger
-      // debugger
+      // eslint-disable-next-line no-debugger
       nameArr.forEach( function ( element ) {
         self.participants.push( { id: self.participants.length + 1, name: element, score: Math.ceil( Math.random() * 100 ) } );
       } );

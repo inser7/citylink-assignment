@@ -4,7 +4,7 @@
       <label for="participants" class="col-sm-2 col-form-label">Участники</label>
       <div class="col-sm-8">
         <input v-model="newParticipants" type="text" class="form-control" id="participants"
-               placeholder="введите имена участников через запятую">
+               placeholder="введите имена участников через запятую" @keyup.enter="AddNewRows()">
       </div>
       <div class="col-sm-2">
         <button class="btn btn-primary mb-2" v-on:click="AddNewRows()">Добавить</button>
@@ -13,14 +13,14 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <table class="table">
+        <table class="table table-striped" v-if="participants.length">
           <thead>
           <tr>
             <th @click="sort('id')">
               <span class="fa fa-chevron-down"
                     v-if="((currentSort === 'id') && (currentSortDir === 'asc'))"></span>
               <span class="fa fa-chevron-up"
-                    v-if="((currentSort === 'date') && (currentSortDir === 'desc'))"></span>
+                    v-if="((currentSort === 'id') && (currentSortDir === 'desc'))"></span>
               Id
             </th>
             <th @click="sort('name')">

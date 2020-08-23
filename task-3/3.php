@@ -30,7 +30,7 @@ use Delivery\Dhl;
 use Delivery\Pochta;
 
 $pochta = new Pochta();
-echo $pochta->cal( 4 ) . PHP_EOL;
+echo $pochta->calc( 4 ) . PHP_EOL;
 
 $dhl = new Dhl();
-echo $dhl->cal( 6 ) . PHP_EOL;
+echo $dhl->calc( 6 ) . PHP_EOL;

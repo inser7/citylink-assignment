@@ -13,7 +13,7 @@ class Pochta implements DeliverCompany
      *
      * @return int
      */
-    function cal( $weight ): int
+    function calc( $weight ): int
     {
         if( $weight < 100 ) return DeliverCompany::BASE_PRICE;
         return self::MAX_PRICE;

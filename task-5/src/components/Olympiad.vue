@@ -7,7 +7,7 @@
                placeholder="Введите имена участников через запятую" @keyup.enter="AddNewRows()">
       </div>
       <div class="col-sm-2">
-        <button class="btn btn-primary mb-2" v-on:click="AddNewRows()">Добавить</button>
+        <button class="btn btn-primary mt-2 mt-md-0" v-on:click="AddNewRows()">Добавить</button>
       </div>
     </div>
 

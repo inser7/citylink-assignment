@@ -84,8 +84,8 @@ export default {
       let nameArr = self.newParticipants.split( ',' );
       // // eslint-disable-next-line no-debugger
       // debugger
-      nameArr.forEach( function ( element, index ) {
-        self.participants.push( { id: index, name: element, score: Math.ceil( Math.random() * 100 ) } );
+      nameArr.forEach( function ( element ) {
+        self.participants.push( { id: self.participants.length + 1, name: element, score: Math.ceil( Math.random() * 100 ) } );
       } );
       self.newParticipants = null;
     },

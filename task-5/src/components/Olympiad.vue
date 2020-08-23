@@ -17,24 +17,30 @@
           <thead>
           <tr>
             <th @click="sort('id')">
-              <span class="fa fa-chevron-down"
-                    v-if="((currentSort === 'id') && (currentSortDir === 'asc'))"></span>
-              <span class="fa fa-chevron-up"
-                    v-if="((currentSort === 'id') && (currentSortDir === 'desc'))"></span>
+              <i class="fas fa-sort-down"
+                    v-if="((currentSort === 'id') && (currentSortDir === 'asc'))"></i>
+              <i class="fas fa-sort-up"
+                    v-if="((currentSort === 'id') && (currentSortDir === 'desc'))"></i>
+              <i class="fas fa-sort"
+                 v-if="(currentSort !== 'id')"></i>
               Id
             </th>
             <th @click="sort('name')">
-              <span class="fa fa-chevron-down"
-                    v-if="((currentSort === 'name') && (currentSortDir === 'asc'))"></span>
-              <span class="fa fa-chevron-up"
-                    v-if="((currentSort === 'name') && (currentSortDir === 'desc'))"></span>
+              <i class="fas fa-sort-down"
+                 v-if="((currentSort === 'name') && (currentSortDir === 'asc'))"></i>
+              <i class="fas fa-sort-up"
+                 v-if="((currentSort === 'name') && (currentSortDir === 'desc'))"></i>
+              <i class="fas fa-sort"
+                 v-if="(currentSort !== 'name')"></i>
               Имя
             </th>
             <th @click="sort('score')">
-              <span class="fa fa-chevron-down"
-                    v-if="((currentSort === 'score') && (currentSortDir === 'asc'))"></span>
-              <span class="fa fa-chevron-up"
-                    v-if="((currentSort === 'score') && (currentSortDir === 'desc'))"></span>
+              <i class="fas fa-sort-down"
+                 v-if="((currentSort === 'score') && (currentSortDir === 'asc'))"></i>
+              <i class="fas fa-sort-up"
+                 v-if="((currentSort === 'score') && (currentSortDir === 'desc'))"></i>
+              <i class="fas fa-sort"
+                 v-if="(currentSort !== 'score')"></i>
               Очки
             </th>
           </tr>

@@ -16,14 +16,30 @@
         <table class="table">
           <thead>
           <tr>
-            <th @click="sort('id')">Id</th>
-            <th @click="sort('name')">Имя</th>
-            <th @click="sort('score')">Очки</th>
+            <th @click="sort('id')">
+              <span class="fa fa-chevron-down"
+                    v-if="((currentSort === 'id') && (currentSortDir === 'asc'))"></span>
+              <span class="fa fa-chevron-up"
+                    v-if="((currentSort === 'date') && (currentSortDir === 'desc'))"></span>
+              Id
+            </th>
+            <th @click="sort('name')">
+              <span class="fa fa-chevron-down"
+                    v-if="((currentSort === 'name') && (currentSortDir === 'asc'))"></span>
+              <span class="fa fa-chevron-up"
+                    v-if="((currentSort === 'name') && (currentSortDir === 'desc'))"></span>
+              Имя</th>
+            <th @click="sort('score')">
+              <span class="fa fa-chevron-down"
+                    v-if="((currentSort === 'score') && (currentSortDir === 'asc'))"></span>
+              <span class="fa fa-chevron-up"
+                    v-if="((currentSort === 'score') && (currentSortDir === 'desc'))"></span>
+              Очки</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="(participant, index) in sortedParticipants" v-bind:key="index">
-            <td>{{ index }}</td>
+            <td>{{ participant.id }}</td>
             <td>{{ participant.name }}</td>
             <td>{{ participant.score }}</td>
           </tr>
@@ -68,8 +84,8 @@ export default {
       let nameArr = self.newParticipants.split( ',' );
       // // eslint-disable-next-line no-debugger
       // debugger
-      nameArr.forEach( function ( element ) {
-        self.participants.push( { name: element, score: Math.ceil( Math.random() * 100 ) } );
+      nameArr.forEach( function ( element, index ) {
+        self.participants.push( { id: index, name: element, score: Math.ceil( Math.random() * 100 ) } );
       } );
       self.newParticipants = null;
     },
@@ -112,6 +128,6 @@ td, th {
 }
 
 th {
-  cursor:pointer;
+  cursor: pointer;
 }
 </style>
